@@ -1,0 +1,15 @@
+.filmList{
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+.filmName{
+    font-size: 20px;
+    padding: 20px;
+}
+
+.filmList img{
+    width: 100px;
+    height: 120px;
+    float: left;
+}
