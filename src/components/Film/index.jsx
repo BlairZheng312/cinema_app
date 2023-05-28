@@ -7,11 +7,7 @@ import FilmItem from './FilmItem'
 
 export default function Film() {
     const [filmList, setFilmList] = useState([])
-    const [filmDetail, setFilmDetail] = useState('')
 
-    const showFilmDetail = (filmItem) => {
-        setFilmDetail(filmItem)
-    }
     useEffect(() => {
         axios({
             url: 'https://m.maizuo.com/gateway?cityId=350600&pageNum=1&pageSize=10&type=1&k=3645468',
@@ -28,8 +24,8 @@ export default function Film() {
 
     return (
         <div >
-            <FilmDetail filmDetail={filmDetail}/>
-            {filmList.map(item => <FilmItem item={item} key={item.filmId} showFilmDetail={showFilmDetail}/>)}
+            <FilmDetail/>
+            {filmList.map(item => <FilmItem item={item} key={item.filmId}/>)}
         </div>
     )
 }
