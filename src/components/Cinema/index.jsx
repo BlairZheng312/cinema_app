@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useMemo } from 'react'
 import './index.css'
 
 export default function Cinema() {
@@ -24,11 +25,11 @@ export default function Cinema() {
         setSearchState(e.target.value)
     }
 
-    const getCinemaList = () => {
+    const getCinemaList = useMemo(() => () => {
         return cinemaList.filter(item =>
             item.name.toUpperCase().includes(searchState.toUpperCase()) ||
             item.name.toUpperCase().includes(searchState.toUpperCase()))
-    }
+    }, [cinemaList, searchState])
 
     return (
         <div className='cinemaList'>
