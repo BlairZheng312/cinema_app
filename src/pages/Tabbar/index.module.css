@@ -1,4 +1,4 @@
-ul{
+.tabBar {
     list-style: none;
     display: flex;
     position: fixed;
@@ -8,9 +8,18 @@ ul{
     line-height: 50px;
     width: 100%;
     background-color: white;
+    font-size: 20px;
 }
 
-ul li{
-    flex:1;
+.buttomBar{
+    bottom: 0px;
+}
+.topBar{
+    top: 0px;
+}
+
+.tabBar li {
+    flex: 1;
     text-align: center;
 }
+

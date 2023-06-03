@@ -1,11 +1,14 @@
 .filmList{
     margin-bottom: 50px;
+    margin-top: 50px;
     overflow: hidden;
+    
 }
 
 .filmName{
     font-size: 20px;
     padding: 20px;
+    color: black;
 }
 
 .filmList img{

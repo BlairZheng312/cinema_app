@@ -1,7 +1,7 @@
 import React from 'react'
-import { useState, useReducer } from 'react'
-import Film from '../Film'
-import './index.css'
+import { useReducer } from 'react'
+import { NavLink, Outlet } from 'react-router-dom'
+import style from '../Tabbar/index.module.css'
 
 export const FilmContext = React.createContext()
 
@@ -26,7 +26,6 @@ const reducer = (prevState, action) => {
 
 export default function FilmBar() {
     const [state, dispatch] = useReducer(reducer, initialState)
-    const [isShowing, setIsShowing] = useState(true)
 
     return (
         <FilmContext.Provider value={{
@@ -34,23 +33,15 @@ export default function FilmBar() {
             dispatch
         }}>
             <div >
-                <ul className='filmBar'>
-                    <li onClick={() => {
-                        setIsShowing(true)
-                        dispatch({
-                            type: 'updateDetail',
-                            value: ''
-                        })
-                    }}>Is Showing</li>
-                    <li onClick={() => {
-                        setIsShowing(false)
-                        dispatch({
-                            type: 'updateDetail',
-                            value: ''
-                        })
-                    }}>Coming Soon</li>
+                <ul className={`${style.tabBar} ${style.topBar}`}>
+                    <li>
+                        <NavLink to={'/film/showing'}>Is Showing</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to={'/film/comingsoon'}>Coming Soon</NavLink>
+                    </li>
                 </ul>
-                <Film isShowing={isShowing} />
+                <Outlet/>
             </div>
         </FilmContext.Provider>
     )

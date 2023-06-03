@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useEffect, useContext } from 'react'
 import FilmDetail from './FilmDetail'
 import FilmItem from './FilmItem'
-import { FilmContext } from '../FilmBar'
+import { FilmContext } from '..'
 
 export default function Film(props) {
     const { isShowing } = props
@@ -31,7 +31,7 @@ export default function Film(props) {
 
         <div >
             <FilmDetail />
-            {state.filmList.map(item => <FilmItem item={item} key={item.filmId} />)}
+            {state.filmList.map(item => <FilmItem item={item} key={item.filmId}/>)}
         </div>
 
     )

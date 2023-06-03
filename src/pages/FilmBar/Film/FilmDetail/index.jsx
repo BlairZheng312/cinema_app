@@ -1,9 +1,9 @@
 import React from 'react'
-import './index.css'
+import style from './index.module.css'
 // import bus from '../pub_sub'
 // import { useState } from 'react'
-import { FilmContext } from '../../FilmBar'
 import { useContext } from 'react'
+import { FilmContext } from '../..'
 
 export default function FilmDetail() {
   // const [filmDetail, setFilmDetail] = useState('')
@@ -12,6 +12,6 @@ export default function FilmDetail() {
   //  })
   const {state} = useContext(FilmContext)
   return (
-    <div className='filmDetail'>{state.detail}</div>
+    <div className={style.filmDetail}>{state.detail}</div>
   )
 }
