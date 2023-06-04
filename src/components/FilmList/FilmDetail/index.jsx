@@ -3,7 +3,7 @@ import style from './index.module.css'
 // import bus from '../pub_sub'
 // import { useState } from 'react'
 import { useContext } from 'react'
-import { FilmContext } from '../..'
+import { FilmContext } from '../../../pages/Film'
 
 export default function FilmDetail() {
   // const [filmDetail, setFilmDetail] = useState('')

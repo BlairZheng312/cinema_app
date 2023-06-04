@@ -1,7 +1,7 @@
 import React from 'react'
 import { useReducer } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
-import style from '../Tabbar/index.module.css'
+import style from '../../components/Tabbar/index.module.css'
 
 export const FilmContext = React.createContext()
 

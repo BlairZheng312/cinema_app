@@ -2,7 +2,7 @@ import React from 'react'
 // import bus from '../pub_sub'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FilmContext } from '../..'
+import { FilmContext } from '../../../pages/Film'
 import style from './index.module.css'
 
 export default function FilmItem(props) {

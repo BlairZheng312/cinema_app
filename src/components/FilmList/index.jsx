@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useEffect, useContext } from 'react'
 import FilmDetail from './FilmDetail'
 import FilmItem from './FilmItem'
-import { FilmContext } from '..'
+import { FilmContext } from '../../pages/Film'
 
 export default function Film(props) {
     const { isShowing } = props

@@ -1,26 +1,55 @@
 import React from 'react'
-import { Routes, Route, Navigate } from "react-router-dom";
-import FilmBar from '../pages/FilmBar';
+import { Navigate } from "react-router-dom";
+import Film from '../pages/Film';
 import Cinema from '../pages/Cinema';
-import Film from '../pages/FilmBar/Film';
-import FilmPage from '../pages/FilmBar/FilmPage';
+import FilmList from '../components/FilmList';
+import FilmPage from '../pages/FilmPage';
 import Profile from '../pages/Profile/Profile';
+import Login from '../pages/Login';
+import Auth from '../components/Auth';
 
-export default function MyRouter() {
-    return (
-        <div>
-            <Routes>
-                <Route path='*' element={< Navigate to='/film' />} />
-                <Route path="/film" element={< FilmBar />} >
-                    <Route index element={< Navigate to='showing' isShowing={true} />} />
-                    <Route path="showing" element={< Film isShowing={true} />} />
-                    <Route path="comingsoon" element={< Film isShowing={false} />} />
-                </Route>
-                <Route path="/film/detail/:id" element={< FilmPage />} />
-                <Route path="/cinema" element={< Cinema />} />
-                <Route path="/profile" element={< Profile />} />
+const elementTable = [
+    {
+        path: '*',
+        element: < Navigate to='/film' />
+    },
+    {
+        path: '/film',
+        element: < Film />,
+        children: [
+            {
+                index:true,
+                element: < Navigate to='showing' isShowing={true} />
+            },
+            {
+                path: 'showing',
+                element: < FilmList isShowing={true} />,
+            },
+            {
+                path: 'comingsoon',
+                element: < FilmList isShowing={false} />,
+            },
+        ]
+    },
+    {
+        path: '/film/detail/:id',
+        element: < FilmPage />
+    },
+    {
+        path: '/cinema',
+        element: < Cinema />
+    },
+    {
+        path: '/profile',
+        element:
+        <Auth>
+                <Profile />
+            </Auth>
+    },
+    {
+        path: '/login',
+        element: < Login />
+    }
+]
 
-            </Routes>
-        </div>
-    )
-}
+export default elementTable
