@@ -1,17 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import style from './index.module.css'
-// import bus from '../pub_sub'
-// import { useState } from 'react'
-import { useContext } from 'react'
-import { FilmContext } from '../../../pages/Film'
 
 export default function FilmDetail() {
-  // const [filmDetail, setFilmDetail] = useState('')
-  // bus.subscribe((data) => { 
-  //   setFilmDetail(data)
-  //  })
-  const {state} = useContext(FilmContext)
+  const detail = useSelector(state => state.detail)
+
   return (
-    <div className={style.filmDetail}>{state.detail}</div>
+    <div className={style.filmDetail}>{detail.filmDetail}</div>
   )
 }

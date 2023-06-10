@@ -1,37 +1,32 @@
 import React from 'react'
-// import bus from '../pub_sub'
-import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FilmContext } from '../../../pages/Film'
+import { useDispatch } from 'react-redux'
+import { setFilmDetail } from '../../../store/detailSlice'
 import style from './index.module.css'
 
 export default function FilmItem(props) {
-    const { name, grade, synopsis, nation, poster, filmId } = props.item
-    const { dispatch } = useContext(FilmContext)
+    const { name, runtime, synopsis, nation, poster, filmId } = props.item
     const navigate = useNavigate()
     const showFilePage = (filmId) => {
         navigate(`/film/detail/${filmId}`)
     }
+    const dispatch = useDispatch()
 
     return (
-        <div className={style.filmList} onClick={()=>showFilePage(filmId)}
+        <div className={style.filmList}
+            onClick={() => {
+                showFilePage(filmId)
+                dispatch(setFilmDetail(''))
+            }}
             onMouseEnter={() => {
-                // bus.publish(synopsis) 
-                // filmContext.updateDetail(synopsis)
-                dispatch({
-                    type: 'updateDetail',
-                    value: synopsis
-                })
+                dispatch(setFilmDetail(synopsis))
             }}
             onMouseLeave={() => {
-                dispatch({
-                    type: 'updateDetail',
-                    value: ''
-                })
+                dispatch(setFilmDetail(''))
             }}>
             <img src={poster} alt={name} />
             <h4 className={style.filmName}>{name}</h4>
-            <div>Grade: {grade}</div>
+            <div>Runtime: {runtime} mins</div>
             <div>Nation: {nation}</div>
         </div>
     )

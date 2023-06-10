@@ -6,6 +6,7 @@ import FilmList from '../components/FilmList';
 import FilmPage from '../pages/FilmPage';
 import Profile from '../pages/Profile/Profile';
 import Login from '../pages/Login';
+import City from '../pages/City';
 import Auth from '../components/Auth';
 
 const elementTable = [
@@ -18,7 +19,7 @@ const elementTable = [
         element: < Film />,
         children: [
             {
-                index:true,
+                index: true,
                 element: < Navigate to='showing' isShowing={true} />
             },
             {
@@ -42,14 +43,18 @@ const elementTable = [
     {
         path: '/profile',
         element:
-        <Auth>
+            <Auth>
                 <Profile />
             </Auth>
     },
     {
         path: '/login',
         element: < Login />
-    }
+    },
+    {
+        path: '/city',
+        element: < City />
+    },
 ]
 
 export default elementTable

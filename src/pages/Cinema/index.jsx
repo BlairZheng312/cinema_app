@@ -4,10 +4,12 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useMemo } from 'react'
 import style from './index.module.css'
+import Header from '../../components/Header'
 
 export default function Cinema() {
     const [cinemaList, setCinemaList] = useState([])
     const [searchState, setSearchState] = useState('')
+
     useEffect(() => {
         axios({
             // url: 'https://m.maizuo.com/gateway?cityId=350600&ticketFlag=1&k=8578303',
@@ -36,6 +38,7 @@ export default function Cinema() {
 
     return (
         <div className={style.cinemaList}>
+            <Header />
             <input type="text" onChange={inputHandler} value={searchState} className={style.searchContent}/>
             {getCinemaList().map(item => <div key={item.id}>
                 <div className={style.cinemaName}>{item.nm}</div>

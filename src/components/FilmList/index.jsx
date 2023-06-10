@@ -1,13 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
-import { useEffect, useContext } from 'react'
+import { useEffect } from 'react'
 import FilmDetail from './FilmDetail'
 import FilmItem from './FilmItem'
-import { FilmContext } from '../../pages/Film'
 
 export default function Film(props) {
     const { isShowing } = props
-    const {dispatch, state} = useContext(FilmContext)
+    const [filmList, setFilmList] = useState([])
 
     useEffect(() => {
         axios({
@@ -19,19 +18,15 @@ export default function Film(props) {
             }
         }).then(res => {
             // console.log(res)
-            // setFilmList(res.data.data.films)
-            dispatch({
-                type: 'setFilmList',
-                value: res.data.data.films
-            })
+            setFilmList(res.data.data.films)
         })
-    }, [isShowing, dispatch])
+    }, [isShowing])
 
     return (
 
         <div >
             <FilmDetail />
-            {state.filmList.map(item => <FilmItem item={item} key={item.filmId}/>)}
+            {filmList.map(item => <FilmItem item={item} key={item.filmId} />)}
         </div>
 
     )
