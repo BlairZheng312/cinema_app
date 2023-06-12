@@ -2,24 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setCity } from '../../store/citySlice'
-import axios from 'axios'
+import { useGetCityListQuery } from '../../store/filmApi'
 
 export default function City() {
     const [cityList, setCityList] = useState([])
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const {data, isSuccess} = useGetCityListQuery()
+
     useEffect(() => {
-        axios({
-            url: 'https://m.maizuo.com/gateway?k=8962877',
-            headers: {
-                'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.2.1","e":"16857605926390438890045441"}',
-                'X-Host': 'mall.film-ticket.city.list'
-            }
-        }).then((res) => {
-            // console.log(res.data.data.cities)
-            setCityList(res.data.data.cities)
-        })
-    }, [])
+        isSuccess && setCityList(data.data.cities)
+    }, [data, isSuccess])
     return (
         <div>
             {cityList.map(item =>

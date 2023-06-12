@@ -5,11 +5,11 @@ import { setTab } from '../../store/tabSlice'
 
 export default function FilmPage() {
     const params = useParams()
-    console.log(params)
-
+    
     const dispatch = useDispatch()
 
     useEffect(() => {
+        console.log(params)
         dispatch(setTab(false))
         return () => {
             dispatch(setTab(true))
