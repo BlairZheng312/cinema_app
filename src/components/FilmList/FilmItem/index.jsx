@@ -2,10 +2,10 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setFilmDetail } from '../../../store/detailSlice'
-import style from './index.module.css'
+import { Image, List } from 'antd-mobile'
 
 export default function FilmItem(props) {
-    const { name, runtime, synopsis, nation, poster, filmId } = props.item
+    const { item } = props
     const navigate = useNavigate()
     const showFilePage = (filmId) => {
         navigate(`/film/detail/${filmId}`)
@@ -13,21 +13,28 @@ export default function FilmItem(props) {
     const dispatch = useDispatch()
 
     return (
-        <div className={style.filmList}
-            onClick={() => {
-                showFilePage(filmId)
-                dispatch(setFilmDetail(''))
-            }}
-            onMouseEnter={() => {
-                dispatch(setFilmDetail(synopsis))
-            }}
-            onMouseLeave={() => {
-                dispatch(setFilmDetail(''))
-            }}>
-            <img src={poster} alt={name} />
-            <h4 className={style.filmName}>{name}</h4>
-            <div>Runtime: {runtime} mins</div>
-            <div>Nation: {nation}</div>
+        <div>
+            <List.Item
+                key={item.filmId}
+                prefix={
+                    <Image
+                        src={item.poster}
+                        width={80}
+                    />
+                }
+                description={
+                    <div>
+                        <div>Runtime: {item.runtime} mins</div>
+                        <div>Nation: {item.nation}</div>
+                    </div>
+                }
+                onClick={() => {
+                    showFilePage(item.filmId)
+                    dispatch(setFilmDetail(item))
+                }}
+            >
+                {item.name}
+            </List.Item>
         </div>
     )
 }

@@ -4,10 +4,11 @@ import Film from '../pages/Film';
 import Cinema from '../pages/Cinema';
 import FilmList from '../components/FilmList';
 import FilmPage from '../pages/FilmPage';
-import Profile from '../pages/Profile/Profile';
+import Profile from '../pages/Profile';
 import Login from '../pages/Login';
 import City from '../pages/City';
 import Auth from '../components/Auth';
+import Search from '../pages/Search';
 
 const elementTable = [
     {
@@ -39,6 +40,10 @@ const elementTable = [
     {
         path: '/cinema',
         element: < Cinema />
+    },
+    {
+        path: '/cinema/search',
+        element: < Search />
     },
     {
         path: '/profile',

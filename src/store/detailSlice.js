@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const detailSlice = createSlice({
     name: 'detail',
     initialState: {
-        filmDetail: ''
+        filmDetail: {}
     },
     reducers: {
         setFilmDetail(state, action) {
