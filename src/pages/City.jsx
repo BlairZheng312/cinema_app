@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { List } from 'antd-mobile'
 import { setCity } from '../store/citySlice'
 import { useGetCityListQuery } from '../store/filmApi'
-import { List } from 'antd-mobile'
 
 export default function City() {
     const [cityList, setCityList] = useState([])
@@ -14,9 +14,10 @@ export default function City() {
     useEffect(() => {
         isSuccess && setCityList(data.data.cities)
     }, [data, isSuccess])
+
     return (
         <div>
-            <List header='Cities'>
+            <List header='Cities' style={{ marginBottom: '70px' }}>
                 {cityList.map(item => (
                     <List.Item key={item.cityId}
                         onClick={() => {
@@ -28,6 +29,5 @@ export default function City() {
                 ))}
             </List>
         </div>
-
     )
 }

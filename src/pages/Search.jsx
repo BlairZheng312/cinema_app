@@ -1,14 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
-import { useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import useCinemaList from '../hooks/useCinemaList'
 import { List } from 'antd-mobile'
 import { SearchBar } from 'antd-mobile'
-import { useNavigate } from 'react-router-dom'
 
 export default function Cinema() {
-    useCinemaList()
     const navigate = useNavigate()
     const cinema = useSelector(state => state.cinema)
     const { cinemaList } = cinema
@@ -24,16 +20,16 @@ export default function Cinema() {
         <div style={{ padding: '20px' }}>
             <SearchBar
                 placeholder='Type in cinema'
-                value={searchState} 
+                value={searchState}
                 showCancelButton={() => true}
                 cancelText='Cancel'
                 onChange={(e) =>
                     setSearchState(e)
                 }
-                onCancel={()=>{
+                onCancel={() => {
                     navigate(-1)
                 }}
-                />
+            />
             {searchState.length > 0 &&
                 (getCinemaList().length > 0 ?
                     <List>

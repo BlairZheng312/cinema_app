@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
-import { List } from 'antd-mobile'
+import React, { useState, useEffect } from 'react'
 import { useGetComingFilmQuery, useGetPlayingFilmQuery } from '../../store/filmApi'
-import FilmItem from '../../../../cinema_app/src/components/FilmList/FilmItem'
+import { List } from 'antd-mobile'
+import FilmItem from './FilmItem'
 
 export default function Film(props) {
     const { isShowing } = props
@@ -16,7 +15,7 @@ export default function Film(props) {
     }, [isShowing, playingData, playingSucess, comingSucess, comingData])
 
     return (
-        <div style={{marginBottom:'70px'}}>
+        <div style={{ marginBottom: '70px' }}>
             <List >
                 {filmList.map(item => (
                     (<FilmItem key={item.filmId} item={item} />)

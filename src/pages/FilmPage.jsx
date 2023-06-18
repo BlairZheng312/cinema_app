@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { Button } from 'antd-mobile'
+import { LeftOutline } from 'antd-mobile-icons'
 import { setTab } from '../store/tabSlice'
 
 export default function FilmPage() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(setTab(false))
@@ -18,7 +21,18 @@ export default function FilmPage() {
 
     return (
         <>
-            <img src={poster} alt={name} style={{ width: '100%', height: '200px' }} />
+            <div style={{ position: 'relative', zIndex: '1' }}>
+                <div>
+                    <img
+                        src={poster}
+                        alt={name}
+                        style={{ width: '100%', height: '200px' }} />
+                </div>
+                <Button
+                    shape='rounded'
+                    style={{ position: 'absolute', top: '20px', left: '20px', zIndex: '100' }}
+                    onClick={() => navigate(-1)}><LeftOutline /></Button>
+            </div>
             <div style={{ padding: '20px' }}>
                 <div style={{ fontSize: '20px' }}>{name}</div>
                 <div>{category}</div>

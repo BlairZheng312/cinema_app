@@ -1,11 +1,17 @@
-import React from 'react'
-import Header from '../components/Header'
-import { useSelector } from 'react-redux'
-import useCinemaList from '../hooks/useCinemaList'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useGetCinemasQuery } from '../store/filmApi'
+import { setCinemaList } from '../store/cinemaSlice'
 import { List } from 'antd-mobile'
+import Header from '../components/Header'
 
 export default function Cinema() {
-    useCinemaList()
+    const { data, isSuccess } = useGetCinemasQuery()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        isSuccess && dispatch(setCinemaList(data.data.cinemas))
+    }, [data, isSuccess, dispatch])
 
     const cinema = useSelector(state => state.cinema)
     const { cinemaList } = cinema
@@ -13,7 +19,7 @@ export default function Cinema() {
     return (
         <div >
             <Header title='Cinema' search={true} />
-            <List>
+            <List style={{ marginBottom: '70px' }}>
                 {cinemaList.map(item => (
                     <List.Item
                         key={item.cinemaId}

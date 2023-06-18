@@ -1,8 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setFilmDetail } from '../../../store/detailSlice'
 import { Image, List } from 'antd-mobile'
+import { setFilmDetail } from '../../../store/detailSlice'
 
 export default function FilmItem(props) {
     const { item } = props

@@ -1,21 +1,36 @@
 import { configureStore } from '@reduxjs/toolkit'
-import tabReducer from './tabSlice'
-import cityReducer from './citySlice'
-import detailReducer from './detailSlice'
-import cinemaReducer from './cinemaSlice'
+import storage from 'redux-persist/lib/storage';
+import {
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+  } from 'redux-persist'
+import rootReducer from './reducers';
 import filmApi from './filmApi'
 
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['city', 'detail', 'cinema']
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
 const store = configureStore({
-    reducer: {
-        tab: tabReducer,
-        detail: detailReducer,
-        city: cityReducer,
-        cinema: cinemaReducer,
-        [filmApi.reducerPath]: filmApi.reducer
-    },
-    middleware: (getDefaultMiddleware) => 
-    getDefaultMiddleware().concat(filmApi.middleware)
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+              ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+          }).concat(filmApi.middleware)
 })
 
-export default store
+const persistor = persistStore(store)
+export { store, persistor }
 
