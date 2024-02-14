@@ -1,20 +1,29 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Button } from 'antd-mobile'
 import { LeftOutline } from 'antd-mobile-icons'
-import { setTab } from '../store/tabSlice'
+// import { setTab } from '../store/tabSlice'
+import store from '../mobx/store'
 
 export default function FilmPage() {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    // useEffect(() => {
+    //     dispatch(setTab(false))
+    //     return () => {
+    //         dispatch(setTab(true))
+    //     }
+    // }, [dispatch])
+
     useEffect(() => {
-        dispatch(setTab(false))
+        store.showTab = false
         return () => {
-            dispatch(setTab(true))
+            store.showTab = true
         }
-    }, [dispatch])
+    }, [])
 
     const detail = useSelector(state => state.detail)
     const { name, runtime, synopsis, nation, poster, category, actors } = detail.filmDetail
